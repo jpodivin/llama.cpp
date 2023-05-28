@@ -1,9 +1,10 @@
 import os
 import hashlib
 
+
 def sha256sum(file):
     block_size = 16 * 1024 * 1024  # 16 MB block size
-    b  = bytearray(block_size)
+    b = bytearray(block_size)
     file_hash = hashlib.sha256()
     mv = memoryview(b)
     with open(file, 'rb', buffering=0) as f:
@@ -14,6 +15,7 @@ def sha256sum(file):
             file_hash.update(mv[:n])
 
     return file_hash.hexdigest()
+
 
 # Define the path to the llama directory (parent folder of script directory)
 llama_path = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
@@ -28,15 +30,14 @@ if not os.path.exists(hash_list_file):
 
 # Read the hash file content and split it into an array of lines
 with open(hash_list_file, "r") as f:
-    hash_list = f.read().splitlines()
+    # Split lines into hash and filename
+    hash_list = [line.split() for line in f.read().splitlines()]
 
 # Create an array to store the results
 results = []
 
 # Loop over each line in the hash list
-for line in hash_list:
-    # Split the line into hash and filename
-    hash_value, filename = line.split("  ")
+for hash_value, filename in hash_list:
 
     # Get the full path of the file by joining the llama path and the filename
     file_path = os.path.join(llama_path, filename)
