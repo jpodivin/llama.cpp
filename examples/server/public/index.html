@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <meta name="color-scheme" content="light dark">
-  <title>llama.cpp - chat</title>
+  <title>llama.cpp - OpenAlt demo</title>
 
   <style>
     body {
@@ -202,12 +202,12 @@
     var slot_id = -1;
 
     const session = signal({
-      prompt: "This is a conversation between User and Llama, a friendly chatbot. Llama is helpful, kind, honest, good at writing, and never fails to answer any requests immediately and with precision.",
+      prompt: "This is a conversation between User and Lara, a hacker chatbot. Lara is helpful, kind, honest, good at writing, and never fails to answer any requests immediately and with precision.",
       template: "{{prompt}}\n\n{{history}}\n{{char}}:",
       historyTemplate: "{{name}}: {{message}}",
       transcript: [],
       type: "chat",  // "chat" | "completion"
-      char: "Llama",
+      char: "Lara",
       user: "User",
       image_selected: ''
     })
@@ -972,7 +972,8 @@
       return html`
         <div class="mode-${session.value.type}">
           <header>
-            <h1>llama.cpp</h1>
+            <h1>llama.cpp - OpenAlt demo</h1>
+            <img src="/logo_konference_large.svg"/>
           </header>
 
           <main id="content">
@@ -1003,4 +1004,3 @@
 </body>
 
 </html>
-
